@@ -4,8 +4,26 @@ import 'package:app/retailer_direc/widgets/cart_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
+
+  @override
+  _CartPageState createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  bool _isLoading = true;  // Track loading state
+
+  @override
+  void initState() {
+    super.initState();
+    // Simulate a loading delay of 2 seconds
+    Future.delayed(const Duration(seconds: 1), () {
+      setState(() {
+        _isLoading = false;  // Update loading state after 2 seconds
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,45 +33,50 @@ class CartPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          // LIST OF CART ITEMS SPREAD OUT IN THE VIEW
-          ...List.generate(cartItems.length, (index) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 10.0),
-              child: CartItemWidget(cartItem: cartItems[index]),
-            );
-          }),
-          // TOTAL ITEMS IN CART AS WELL AS TOTAL PRICE
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Total: (${cartItems.length})"),
-              Text(
-                "₹${formatStringToTwoDecimalPoints(totalPriceString)}",
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary),
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
               ),
-            ],
-          ),
-          // CHECKOUT BUTTON
-          const SizedBox(height: 20),
-          FilledButton.icon(
-  onPressed: () {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => RazorPayPage(formatStringToTwoDecimalPoints(totalPriceString),),
-      ),
-    );
-  },
-  icon: const Icon(IconlyBold.arrowRight),
-  label: const Text("Proceed to Checkout"),
-),
-
-        ],
-      ),
+            )
+          : ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+                // LIST OF CART ITEMS SPREAD OUT IN THE VIEW
+                ...List.generate(cartItems.length, (index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: CartItemWidget(cartItem: cartItems[index]),
+                  );
+                }),
+                // TOTAL ITEMS IN CART AS WELL AS TOTAL PRICE
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Total: (${cartItems.length})"),
+                    Text(
+                      "₹${formatStringToTwoDecimalPoints(totalPriceString)}",
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary),
+                    ),
+                  ],
+                ),
+                // CHECKOUT BUTTON
+                const SizedBox(height: 20),
+                FilledButton.icon(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => RazorPayPage(formatStringToTwoDecimalPoints(totalPriceString),),
+                      ),
+                    );
+                  },
+                  icon: const Icon(IconlyBold.arrowRight),
+                  label: const Text("Proceed to Checkout"),
+                ),
+              ],
+            ),
     );
   }
 

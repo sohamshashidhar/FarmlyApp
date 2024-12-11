@@ -13,7 +13,7 @@ class ProductTile extends StatefulWidget {
 }
 
 class _ProductTileState extends State<ProductTile> {
-  int quantity = 0;
+  int quantity = 0; // Track the quantity
 
   @override
   Widget build(BuildContext context) {

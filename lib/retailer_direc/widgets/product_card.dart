@@ -43,7 +43,7 @@ class _ProductCardState extends State<ProductCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 100,
+              height: 90,
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(

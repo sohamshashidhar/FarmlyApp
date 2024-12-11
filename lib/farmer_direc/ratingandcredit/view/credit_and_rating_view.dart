@@ -5,7 +5,9 @@ import 'package:app/utils/texttheme.dart';
 import 'package:flutter/material.dart';
 
 class CreditAndRatingView extends StatelessWidget {
-  const CreditAndRatingView({super.key});
+  final double value;
+  final String rating;
+  const CreditAndRatingView({super.key, required this.value, required this.rating});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,7 @@ class CreditAndRatingView extends StatelessWidget {
                   children: [
                     Stack(
                       children: [
-                        SyncfusionGaugeView(label: "740"),
+                        SyncfusionGaugeView(value: value/10,),
                         Positioned(
                           child: Column(
                             children: [
@@ -171,7 +173,7 @@ class CreditAndRatingView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              "4.2",
+                              rating.toString(),
                               style: TextPref.opensans.copyWith(
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,

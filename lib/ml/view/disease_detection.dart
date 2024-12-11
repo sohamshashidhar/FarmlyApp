@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:app/ml/response/disease_info.dart';
+import 'package:app/utils/appcolors.dart';
+import 'package:app/utils/texttheme.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
@@ -27,12 +29,13 @@ class _DiseaseDetectionViewState extends State<DiseaseDetectionView> {
 
   Future<void> _uploadImage() async {
     if (_image == null) return;
-
-    const String url =
-        'http://192.168.45.92:5000/predict/disease'; // Replace with your API URL
+const String url =
+        'http://172.20.10.9:5000/predict/disease'; // Replace with your API URL
 
     try {
+     
       var request = http.MultipartRequest('POST', Uri.parse(url));
+      
       request.files.add(
         await http.MultipartFile.fromPath(
           'image',
@@ -40,6 +43,8 @@ class _DiseaseDetectionViewState extends State<DiseaseDetectionView> {
           filename: basename(_image!.path),
         ),
       );
+
+
 
       var response = await request.send();
 
@@ -60,13 +65,13 @@ class _DiseaseDetectionViewState extends State<DiseaseDetectionView> {
   @override
   Widget build(BuildContext context) {
     // Colors for background and buttons
-    final Color backgroundColor = Colors.lightGreen.shade50;
-    final Color primaryButtonColor = Colors.green.shade800;
-    final Color secondaryButtonColor = Colors.green.shade300;
+    final Color backgroundColor = AppColors.kBackground;
+    final Color primaryButtonColor = AppColors.kSecondary;
+    final Color secondaryButtonColor = AppColors.kSecondary;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Disease Detection'),
+        title: Text('Disease Detection', style: TextPref.opensans.copyWith(color: Colors.white),),
         backgroundColor: primaryButtonColor, // AppBar color
       ),
       body: Container(
@@ -80,7 +85,7 @@ class _DiseaseDetectionViewState extends State<DiseaseDetectionView> {
               _image == null
                   ? Text(
                       'No image selected.',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16, color: Colors.white),
                       textAlign: TextAlign.center,
                     )
                   : Image.file(_image!),
@@ -93,7 +98,7 @@ class _DiseaseDetectionViewState extends State<DiseaseDetectionView> {
                   textStyle: TextStyle(fontSize: 16),
                   padding: EdgeInsets.symmetric(vertical: 12),
                 ),
-                child: Text('Pick Image from Gallery'),
+                child: Text('Pick Image from Gallery', style: TextPref.opensans.copyWith(color: Colors.white)),
               ),
               SizedBox(height: 16),
               ElevatedButton(
@@ -103,7 +108,7 @@ class _DiseaseDetectionViewState extends State<DiseaseDetectionView> {
                   textStyle: TextStyle(fontSize: 16),
                   padding: EdgeInsets.symmetric(vertical: 12),
                 ),
-                child: Text('Upload Image'),
+                child: Text('Upload Image', style: TextPref.opensans.copyWith(color: Colors.white)),
               ),
               SizedBox(height: 16),
               if (_diseaseInfo != null) ...[

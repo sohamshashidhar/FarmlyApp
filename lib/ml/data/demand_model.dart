@@ -34,7 +34,7 @@ class DemandModel {
 
   // Method to send the data to the API
   Future<void> sendDataToAPI() async {
-    const String url = 'http://192.168.45.92:5000/predict/demand'; // API URL
+    const String url = 'http://172.20.10.9:5000/predict/demand'; // API URL
 
     try {
       var headers = {'Content-Type': 'application/json'};

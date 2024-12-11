@@ -83,7 +83,7 @@ class _FarmerDashboardViewState extends State<FarmerDashboardView> {
       GestureDetector(
         onTap: () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => CreditAndRatingView()));
+              .push(MaterialPageRoute(builder: (_) => CreditAndRatingView(rating: "4.3",value: 76,)));
         },
         child: Container(
           padding: const EdgeInsets.all(16),
@@ -411,7 +411,7 @@ class _FarmerDashboardViewState extends State<FarmerDashboardView> {
                     ),
                     Container(
                       padding: EdgeInsets.all(8),
-                      height: size.height * 0.135,
+                      height: size.height * 0.130,
                       width: size.width * 0.5,
                       decoration: BoxDecoration(
                           color: Colors.amber.shade100,
@@ -427,7 +427,7 @@ class _FarmerDashboardViewState extends State<FarmerDashboardView> {
                                 fontSize: 14, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
-                            width: 20,
+                            width: 15,
                           ),
                           FittedBox(
                             fit: BoxFit.scaleDown,

@@ -1,4 +1,6 @@
+import 'package:app/onboarding.dart';
 import 'package:app/retailer_direc/pages/order_page.dart';
+import 'package:app/retailer_direc/pages/subscription_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
@@ -55,11 +57,19 @@ class ProfilePage extends StatelessWidget {
             onTap: () {
 
             },
+          ),          ListTile(
+            leading: const Icon(Icons.monetization_on_outlined, opticalSize: 1.5, size: 25,),
+            title: const Text("Subscription Model"),
+            onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_)=>SubscriptionPage()));
+            },
           ),
           ListTile(
             leading: const Icon(IconlyLight.logout),
             title: const Text("Logout"),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>FoochiOnboardingView()));
+            },
           ),
         ],
       ),

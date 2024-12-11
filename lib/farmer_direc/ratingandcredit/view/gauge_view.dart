@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class SyncfusionGaugeView extends StatefulWidget {
-  final String label; // Label passed through the widget
+  final double value; // Label passed through the widget
 
-  const SyncfusionGaugeView({super.key, required this.label});
+  const SyncfusionGaugeView({super.key, required this.value});
 
   @override
   State<SyncfusionGaugeView> createState() => _SyncfusionGaugeViewState();
 }
 
 class _SyncfusionGaugeViewState extends State<SyncfusionGaugeView> {
-  double value = 80; // Example gauge value
+   // Example gauge value
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class _SyncfusionGaugeViewState extends State<SyncfusionGaugeView> {
               ),
               pointers: <GaugePointer>[
                 RangePointer(
-                  value: value,
+                  value: widget.value,
                   width: 0.05, // Increased line thickness
                   pointerOffset: 0.05,
                   color: Colors.transparent, // Transparent to show gradient
@@ -52,7 +52,7 @@ class _SyncfusionGaugeViewState extends State<SyncfusionGaugeView> {
                   ),
                 ),
                 MarkerPointer(
-                  value: value,
+                  value: widget.value,
                   markerHeight: 10,
                   markerWidth: 10,
                   markerType: MarkerType.circle, // Triangle pointer
@@ -68,7 +68,7 @@ class _SyncfusionGaugeViewState extends State<SyncfusionGaugeView> {
           top: 130, // Adjust positioning as needed
           child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
             Text(
-              widget.label,
+              "${(widget.value)*10}",
               style: TextPref.opensans.copyWith(
                 color: Colors.black,
                 fontSize: 28,

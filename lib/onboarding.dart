@@ -4,7 +4,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:app/farmerinfo.dart';
 import 'package:app/utils/appassets.dart';
 import 'package:app/utils/appcolors.dart';
-import 'package:app/verification.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

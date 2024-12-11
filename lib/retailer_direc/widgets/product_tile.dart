@@ -128,7 +128,7 @@ class _ProductTileState extends State<ProductTile> {
                                         });
                                       },
                                       borderRadius: BorderRadius.circular(99),
-                                      isSelected: [true, false, true],
+                                      isSelected: const [true, false, true],
                                       constraints: const BoxConstraints(
                                         minWidth: 30,
                                         minHeight: 30,

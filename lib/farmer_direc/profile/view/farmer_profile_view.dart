@@ -1,3 +1,4 @@
+import 'package:app/farmer_direc/community/view/community_page.dart';
 import 'package:app/farmer_direc/crowdfunding/view/crowdfunding_view.dart';
 import 'package:app/farmer_direc/dashboard/model/farmer_model.dart';
 import 'package:app/farmer_direc/orders/view/order_view.dart';
@@ -105,6 +106,17 @@ class ProfilePage extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) =>  DiseaseDetectionView())); // Navigate to Disease Detection
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.people,
+              color: Colors.black,
+            ),
+            title: const Text("Communities"),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) =>  CommunityPage())); // Navigate to Disease Detection
             },
           ),
           ListTile(

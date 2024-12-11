@@ -1,3 +1,4 @@
+import 'package:app/farmer_direc/community/view/community_page.dart';
 import 'package:app/farmer_direc/dashboard/view/farmer_dashboard.dart';
 import 'package:app/farmer_direc/inventory/view/farmer_inventory_view.dart';
 import 'package:app/farmer_direc/orders/view/order_view.dart';
@@ -21,6 +22,7 @@ class _NavBarState extends State<NavBar> {
   List<Widget> screenList = [
     FarmerDashboardView(),
     OrderView(farmerId: "farmerA123",),
+    // CommunityPage(),
     FarmerInventoryView(),
     ProfilePage()
   ];

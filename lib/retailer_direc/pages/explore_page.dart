@@ -15,7 +15,8 @@ class ExplorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FarmerProvider farmerProvider = Provider.of<FarmerProvider>(context, listen: true);
+    FarmerProvider farmerProvider =
+        Provider.of<FarmerProvider>(context, listen: true);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -23,7 +24,7 @@ class ExplorePage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            // FILTER AND SEARCH TEXT FIELD
+            // Filter and Search Bar
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Row(
@@ -48,7 +49,7 @@ class ExplorePage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 12),
-                    child: IconButton.filled(
+                    child: IconButton(
                       onPressed: () {
                         showDialog(
                           context: context,
@@ -64,9 +65,12 @@ class ExplorePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
+
+            // Offers Carousel
             const OffersCarousel(),
             const SizedBox(height: 16),
 
+            // Featured Products Section
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -75,15 +79,17 @@ class ExplorePage extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Navigate to see all products page
+                  },
                   child: const Text("See all"),
                 ),
               ],
             ),
 
-            // FEATURED PRODUCTS FROM FARMER INVENTORY
+            // Grid of Featured Products
             FutureBuilder<List<FarmerInventoryItem>>(
-              future: farmerProvider.getInventoryList('farmerA123'),  // Fetch inventory for specific farmer
+              future: farmerProvider.getInventoryList('farmerA123'),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
@@ -93,23 +99,35 @@ class ExplorePage extends StatelessWidget {
                   return const Center(child: Text('No products available.'));
                 }
 
-                // If inventory items are fetched successfully
                 List<FarmerInventoryItem> inventoryItems = snapshot.data!;
 
-                return GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: inventoryItems.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    childAspectRatio: 0.8,
-                  ),
-                  itemBuilder: (context, index) {
-                    final item = inventoryItems[index];
-                    return ProductCard(
-                      product: Product(name: item.name, farmer: item.farmerID, description: "NULL", image: item.imageUrl, price: item.price , unit: "1", rating: 0),  // Update the `ProductCard` to accept a FarmerInventoryItem if needed
+                return Consumer<FarmerProvider>(
+                  builder: (context, provider, child) {
+                    return GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: inventoryItems.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 16,
+                        childAspectRatio: 0.8,
+                      ),
+                      itemBuilder: (context, index) {
+                        final item = inventoryItems[index];
+                        return ProductCard(
+                          product: Product(
+                            name: item.name,
+                            farmer: item.farmerID,
+                            description: "Description here",
+                            image: item.imageUrl,
+                            price: item.price,
+                            unit: "1",
+                            rating: 4, // Default rating for now
+                          ),
+                        );
+                      },
                     );
                   },
                 );

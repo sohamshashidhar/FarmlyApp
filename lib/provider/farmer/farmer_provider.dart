@@ -45,32 +45,49 @@ Future<void> addInventoryItems(String farmerId, FarmerInventoryItem item) async 
     }
     return null;
   }
+Future<List<FarmerInventoryItem>> getInventoryList(String farmerId, [String? query]) async {
+  try {
+    final farmerDocRef = _firestore.collection('farmers').doc(farmerId);
+    Query inventoryQuery = farmerDocRef.collection('inventory');
 
-  Future<List<FarmerInventoryItem>> getInventoryList(String farmerId) async {
-    try {
-      // Reference to the farmer's document
-      final farmerDocRef = _firestore.collection('farmers').doc(farmerId);
-
-      // Fetch items from the inventory sub-collection
-      final snapshot = await farmerDocRef.collection('inventory').get();
-      final items = snapshot.docs.map((doc) {
-        final data = doc.data();
-        return FarmerInventoryItem(
-          itemId: data['itemId'],
-          imageUrl: data['imageUrl'],
-          name: data['name'],
-          price: data['price'],
-          kgCount: data['kgCount'],
-          farmerID: data['farmerID'],
-        );
-      }).toList();
-      return items;
-    } catch (e) {
-      print("Failed to get inventory list: $e");
-      // Handle errors as needed
-      return [];
+    if (query != null && query.isNotEmpty) {
+      inventoryQuery = inventoryQuery.where('name', isGreaterThanOrEqualTo: query);
     }
+
+    final snapshot = await inventoryQuery.get();
+    final items = snapshot.docs.map((doc) {
+  final data = doc.data() as Map<String, dynamic>?; // Cast to Map<String, dynamic>
+
+if (data == null) {
+  return FarmerInventoryItem(
+    itemId: '',
+    imageUrl: 'assets/placeholder.png',
+    name: 'Unnamed Item',
+    price: '0.0',
+    kgCount: '0',
+    farmerID: '',
+  );
+}
+
+return FarmerInventoryItem(
+  itemId: data['itemId'] ?? '',
+  imageUrl: data['imageUrl'] ?? 'assets/placeholder.png',
+  name: data['name'] ?? 'Unnamed Item',
+  price: data['price'] ?? 0.0,
+  kgCount: data['kgCount'] ?? 0,
+  farmerID: data['farmerID'] ?? '',
+);
+
+
+
+    }).toList();
+
+    return items;
+  } catch (e) {
+    print("Failed to get inventory list: $e");
+    return [];
   }
+}
 
   Future<FarmerInventoryItem?> getInventoryItemById(String farmerId, String itemId) async {
     try {

@@ -16,7 +16,7 @@ class ProductTile extends StatefulWidget {
 }
 
 class _ProductTileState extends State<ProductTile> {
-  int quantity = 0;
+  int quantity = 0; // Track the quantity
 
   @override
   Widget build(BuildContext context) {
@@ -36,34 +36,6 @@ class _ProductTileState extends State<ProductTile> {
         ),
       ),
       confirmDismiss: (direction) async {
-        // if (direction == DismissDirection.endToStart) {
-        //   return await showDialog(
-        //     context: context,
-        //     builder: (context) {
-        //       return AlertDialog(
-        //         title: const Text("Delete Item"),
-        //         content: const Text(
-        //           "Are you sure you want to delete this item?",
-        //         ),
-        //         actions: [
-        //           TextButton(
-        //             onPressed: () {
-        //               Navigator.of(context).pop(false);
-        //             },
-        //             child: const Text("No"),
-        //           ),
-        //           TextButton(
-        //             onPressed: () {
-        //               Navigator.of(context).pop(true);
-        //             },
-        //             child: const Text("Yes"),
-        //           ),
-        //         ],
-        //       );
-        //     },
-        //   );
-        // }
-        // return false;
         final completer = Completer<bool>();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -89,14 +61,14 @@ class _ProductTileState extends State<ProductTile> {
         return await completer.future;
       },
       child: GestureDetector(
-        onTap: () {Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            ProductDetailsPage(product: widget.cartItem), // implement farmer model then push it
-                            
-                      ),
-                    );},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductDetailsPage(product: widget.cartItem),
+            ),
+          );
+        },
         child: SizedBox(
           height: 170,
           child: Card(
@@ -128,7 +100,7 @@ class _ProductTileState extends State<ProductTile> {
                       ),
                     ),
                   ),
-        
+
                   // OTHER INFORMATION
                   Expanded(
                     child: Column(
@@ -145,7 +117,7 @@ class _ProductTileState extends State<ProductTile> {
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
-                        const SizedBox(height: 3,),
+                        const SizedBox(height: 3),
                         Row(
                           children: List.generate(
                             5,
@@ -173,68 +145,46 @@ class _ProductTileState extends State<ProductTile> {
                                   ),
                             ),
                             quantity == 0
-                            ? IconButton.filled(
-                                onPressed: () {
+                                ? IconButton.filled(
+                                    onPressed: () {
+                                      setState(() {
+                                        quantity++;
+                                      });
+                                    },
+                                    icon: const Icon(Icons.add),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 5.0, horizontal: 4),
+                                    child: SizedBox(
+                                      height: 30,
+                                      child: ToggleButtons(
+                                onPressed: (index) {
                                   setState(() {
-                                    quantity++;
+                                    if (index == 0 && quantity > 0) {
+                                      quantity--; // Decrease quantity
+                                    } else if (index == 2) {
+                                      quantity++; // Increase quantity
+                                    }
                                   });
                                 },
-                                icon: const Icon(Icons.add),
-                              )
-                            : Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 4),
-                              child: SizedBox(
-                                  height: 30,
-                                  child: ToggleButtons(
-                                    onPressed: (index) {
-                                      if (index == 0) {
-                                        // USER WANT TO DECREASE QUANTITY
-                                      } else if (index == 2) {
-                                        // USER WANT TO INCREASE QUANTITY
-                                      }
-                                    },
-                                    borderRadius: BorderRadius.circular(99),
-                                    isSelected: const [true, false, true],
-                                    selectedColor:
-                                        Theme.of(context).colorScheme.primary,
-                                    constraints: const BoxConstraints(
-                                      minWidth: 30,
-                                      minHeight: 30,
-                                    ),
-                                    children: const [
-                                      Icon(Icons.remove, size: 20),
-                                      Text("2"),
-                                      Icon(Icons.add, size: 20),
-                                    ],
-                                  ),
+                                borderRadius: BorderRadius.circular(99),
+                                isSelected: [true, false, true],
+                                constraints: const BoxConstraints(
+                                  minWidth: 30,
+                                  minHeight: 30,
                                 ),
-                            )
-        
-                            // SizedBox(
-                            //   height: 30,
-                            //   child: ToggleButtons(
-                            //     onPressed: (index) {
-                            //       if (index == 0) {
-                            //         // USER WANT TO DECREASE QUANTITY
-                            //       } else if (index == 2) {
-                            //         // USER WANT TO INCREASE QUANTITY
-                            //       }
-                            //     },
-                            //     borderRadius: BorderRadius.circular(99),
-                            //     isSelected: const [true, false, true],
-                            //     selectedColor:
-                            //         Theme.of(context).colorScheme.primary,
-                            //     constraints: const BoxConstraints(
-                            //       minWidth: 30,
-                            //       minHeight: 30,
-                            //     ),
-                            //     children: const [
-                            //       Icon(Icons.remove, size: 20),
-                            //       Text("2"),
-                            //       Icon(Icons.add, size: 20),
-                            //     ],
-                            //   ),
-                            // )
+                                children: [
+                                  const Icon(Icons.remove, size: 20),
+                                  Text(
+                                    "$quantity",
+                                    style: Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                  const Icon(Icons.add, size: 20),
+                                ],
+                              ),
+                                    ),
+                                  )
                           ],
                         ),
                       ],

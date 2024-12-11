@@ -1,3 +1,4 @@
+import 'package:app/farmer_direc/commodity/view/commodity_view.dart';
 import 'package:app/farmer_direc/dashboard/view/farmer_dashboard.dart';
 import 'package:app/farmer_direc/navbar/navbar.dart';
 import 'package:app/farmer_direc/orders/view/order_view.dart';
@@ -93,7 +94,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomePage(),
+      home: MarketDataPage(),
     );
   }
 }

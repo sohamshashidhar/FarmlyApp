@@ -109,7 +109,7 @@ class ExplorePage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final item = inventoryItems[index];
                     return ProductCard(
-                      product: Product(name: item.name, farmer: item.farmerID, description: "NULL", image: item.imageUrl, price: item.price , unit: "1", rating: 0),  // Update the `ProductCard` to accept a FarmerInventoryItem if needed
+                      product: Product(name: item.name, farmer: item.farmerID, description: "NULL", image: "assets/${item.imageUrl}", price: item.price , unit: "1", rating: 0),  // Update the `ProductCard` to accept a FarmerInventoryItem if needed
                     );
                   },
                 );

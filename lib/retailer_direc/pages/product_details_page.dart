@@ -71,7 +71,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
-                image: AssetImage("assets/${widget.product.image}"),
+                image: AssetImage(widget.product.image),
                 fit: BoxFit.cover,
               ),
             ),
@@ -154,7 +154,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Text(
-                  "1 ${widget.product.unit}",
+                  "${widget.product.unit}",
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),

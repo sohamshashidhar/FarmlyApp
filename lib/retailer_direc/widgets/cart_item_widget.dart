@@ -111,7 +111,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
-                      image: AssetImage("assets/${widget.cartItem.image}"),
+                      image: AssetImage(widget.cartItem.image),
                       fit: BoxFit.cover,
                     ),
                   ),

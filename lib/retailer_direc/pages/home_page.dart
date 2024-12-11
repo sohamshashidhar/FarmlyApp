@@ -1,4 +1,3 @@
-
 import 'package:app/retailer_direc/pages/cart_page.dart';
 import 'package:app/retailer_direc/pages/explore_page.dart';
 import 'package:app/retailer_direc/pages/products_view.dart';
@@ -7,7 +6,6 @@ import 'package:app/utils/appcolors.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:badges/badges.dart' as badges;
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,7 +20,6 @@ class _HomePageState extends State<HomePage> {
 
   final pages = [
     const ExplorePage(),
-    // const ServicePage(),
     const ProductsView()
 ,    const CartPage(),
     const ProfilePage(),

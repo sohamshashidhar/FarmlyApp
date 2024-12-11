@@ -8,6 +8,7 @@ import 'package:app/ml/view/demand_forecast_view.dart';
 import 'package:app/ml/view/disease_detection.dart';
 import 'package:app/provider/farmer_retrieve.dart';
 import 'package:app/retailer_direc/models/ROrderViewModel.dart';
+import 'package:app/retailer_direc/pages/explore_page.dart';
 import 'package:app/retailer_direc/pages/home_page.dart';
 import 'package:app/retailer_direc/pages/order_page.dart';
 import 'package:app/retailer_direc/retailer/model/retailer_provider.dart';
@@ -72,7 +73,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: FoochiOnboardingView(),
+      home: HomePage(),
     );
   }
 }

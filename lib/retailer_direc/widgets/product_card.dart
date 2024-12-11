@@ -47,7 +47,7 @@ class _ProductCardState extends State<ProductCard> {
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/${widget.product.image}"),
+                  image: AssetImage(widget.product.image),
                   fit: BoxFit.cover,
                 ),
               ),

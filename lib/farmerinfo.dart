@@ -116,7 +116,7 @@ class _FarmerInfo extends State<FarmerInfo> {
                         content: Text('Verification Successful!'),
                       ));
                       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-                          builder: (_) => NavBar()), (route) => false);
+                          builder: (_) => HomePage()), (route) => false);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text(

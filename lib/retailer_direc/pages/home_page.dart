@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   final pages = [
-    const ExplorePage(),
+     ExplorePage(),
     // const ServicePage(),
     const ProductsView()
 ,    const CartPage(),

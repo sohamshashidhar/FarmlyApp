@@ -119,25 +119,29 @@ class _ProductTileState extends State<ProductTile> {
                                     height: 30,
                                     child: ToggleButtons(
                                       onPressed: (index) {
-                                        if (index == 0) {
-                                          // USER WANT TO DECREASE QUANTITY
-                                        } else if (index == 2) {
-                                          // USER WANT TO INCREASE QUANTITY
-                                        }
+                                        setState(() {
+                                          if (index == 0 && quantity > 0) {
+                                            quantity--; // Decrease quantity
+                                          } else if (index == 2) {
+                                            quantity++; // Increase quantity
+                                          }
+                                        });
                                       },
                                       borderRadius: BorderRadius.circular(99),
-                                      isSelected: const [true, false, true],
-                                      selectedColor: Theme.of(context)
-                                          .colorScheme
-                                          .primary,
+                                      isSelected: [true, false, true],
                                       constraints: const BoxConstraints(
                                         minWidth: 30,
                                         minHeight: 30,
                                       ),
-                                      children: const [
-                                        Icon(Icons.remove, size: 20),
-                                        Text("2"),
-                                        Icon(Icons.add, size: 20),
+                                      children: [
+                                        const Icon(Icons.remove, size: 20),
+                                        Text(
+                                          "$quantity",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge,
+                                        ),
+                                        const Icon(Icons.add, size: 20),
                                       ],
                                     ),
                                   ),

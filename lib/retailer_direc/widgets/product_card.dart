@@ -1,4 +1,5 @@
 import 'package:app/retailer_direc/models/product.dart';
+import 'package:app/retailer_direc/pages/product_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
@@ -19,7 +20,7 @@ class _ProductCardState extends State<ProductCard> {
     return GestureDetector(
       onTap: () {
         // Navigate to product details page when the card is tapped
-      },
+              },
       child: Card(
         clipBehavior: Clip.antiAlias,
         elevation: 1,

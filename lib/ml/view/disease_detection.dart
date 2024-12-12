@@ -29,13 +29,12 @@ class _DiseaseDetectionViewState extends State<DiseaseDetectionView> {
 
   Future<void> _uploadImage() async {
     if (_image == null) return;
-const String url =
-        'http://172.20.10.9:5000/predict/disease'; // Replace with your API URL
+    const String url =
+        'http://172.22.26.21:5000/predict/disease'; // Replace with your API URL
 
     try {
-     
       var request = http.MultipartRequest('POST', Uri.parse(url));
-      
+
       request.files.add(
         await http.MultipartFile.fromPath(
           'image',
@@ -43,8 +42,6 @@ const String url =
           filename: basename(_image!.path),
         ),
       );
-
-
 
       var response = await request.send();
 
@@ -71,7 +68,10 @@ const String url =
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Disease Detection', style: TextPref.opensans.copyWith(color: Colors.white),),
+        title: Text(
+          'Disease Detection',
+          style: TextPref.opensans.copyWith(color: Colors.white),
+        ),
         backgroundColor: primaryButtonColor, // AppBar color
       ),
       body: Container(
@@ -98,7 +98,8 @@ const String url =
                   textStyle: TextStyle(fontSize: 16),
                   padding: EdgeInsets.symmetric(vertical: 12),
                 ),
-                child: Text('Pick Image from Gallery', style: TextPref.opensans.copyWith(color: Colors.white)),
+                child: Text('Pick Image from Gallery',
+                    style: TextPref.opensans.copyWith(color: Colors.white)),
               ),
               SizedBox(height: 16),
               ElevatedButton(
@@ -108,7 +109,8 @@ const String url =
                   textStyle: TextStyle(fontSize: 16),
                   padding: EdgeInsets.symmetric(vertical: 12),
                 ),
-                child: Text('Upload Image', style: TextPref.opensans.copyWith(color: Colors.white)),
+                child: Text('Upload Image',
+                    style: TextPref.opensans.copyWith(color: Colors.white)),
               ),
               SizedBox(height: 16),
               if (_diseaseInfo != null) ...[

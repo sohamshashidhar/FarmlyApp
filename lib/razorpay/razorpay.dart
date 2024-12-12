@@ -36,9 +36,10 @@ class _RazorPayPageState extends State<RazorPayPage> {
   }
 
   void checkout(String totalPrice) async {
-    int amt = (double.parse(totalPrice) * 100).toInt(); // Convert to int for Razorpay
+    int amt =
+        (double.parse(totalPrice) * 100).toInt(); // Convert to int for Razorpay
     var options = {
-      'key': 'rzp_test_GcZZFDPP0jHtC4',
+      'key': 'rzp_test_uGoq5ABJztRAhk',
       'amount': amt,
       'name': 'Farmly',
       'prefill': {
@@ -58,23 +59,20 @@ class _RazorPayPageState extends State<RazorPayPage> {
 
   void handlePaymentSuccess(PaymentSuccessResponse response) {
     Fluttertoast.showToast(
-      msg: "Payment Successful: ${response.paymentId!}",
-      toastLength: Toast.LENGTH_LONG
-    );
+        msg: "Payment Successful: ${response.paymentId!}",
+        toastLength: Toast.LENGTH_LONG);
   }
 
   void handlePaymentError(PaymentFailureResponse response) {
     Fluttertoast.showToast(
-      msg: "Payment Failed: ${response.message!}",
-      toastLength: Toast.LENGTH_LONG
-    );
+        msg: "Payment Failed: ${response.message!}",
+        toastLength: Toast.LENGTH_LONG);
   }
 
   void handleExternalWallet(ExternalWalletResponse response) {
     Fluttertoast.showToast(
-      msg: "External Wallet: ${response.walletName!}",
-      toastLength: Toast.LENGTH_LONG
-    );
+        msg: "External Wallet: ${response.walletName!}",
+        toastLength: Toast.LENGTH_LONG);
   }
 
   @override
@@ -84,7 +82,8 @@ class _RazorPayPageState extends State<RazorPayPage> {
         title: const Text("Payment"),
       ),
       body: Center(
-        child: CircularProgressIndicator(), // Show a loading indicator while processing
+        child:
+            CircularProgressIndicator(), // Show a loading indicator while processing
       ),
     );
   }

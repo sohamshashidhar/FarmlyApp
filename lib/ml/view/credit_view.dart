@@ -40,8 +40,7 @@ class _CreditPredictionScreenState extends State<CreditPredictionScreen> {
       );
 
       try {
-        const String url =
-            'http://172.20.10.9:5000/predict/credit'; // API URL
+        const String url = 'http://172.22.26.21:5000/predict/credit'; // API URL
 
         var headers = {'Content-Type': 'application/json'};
         var body = jsonEncode(creditModel.toJson());
@@ -61,8 +60,11 @@ class _CreditPredictionScreenState extends State<CreditPredictionScreen> {
             _predictionResult =
                 'Predicted Credit: ${(predictionResponse.prediction[0] / 2).toStringAsFixed(0)}';
           });
-          Navigator.of(context).push(MaterialPageRoute(builder: (_)=> CreditAndRatingView(value: (predictionResponse.prediction[0].ceil().toDouble())/2, rating: _ratingsController.text)));
-
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => CreditAndRatingView(
+                  value:
+                      (predictionResponse.prediction[0].ceil().toDouble()) / 2,
+                  rating: _ratingsController.text)));
         } else {
           setState(() {
             _predictionResult =
@@ -198,8 +200,7 @@ class _CreditPredictionScreenState extends State<CreditPredictionScreen> {
                           ),
                           padding: EdgeInsets.symmetric(vertical: 12),
                         ),
-                        onPressed:_submitData
-                        , // Submit data to API
+                        onPressed: _submitData, // Submit data to API
                         child: Text('Get Prediction'),
                       ),
                 SizedBox(height: 20),

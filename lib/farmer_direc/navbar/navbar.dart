@@ -25,7 +25,7 @@ class _NavBarState extends State<NavBar> {
       farmerId: "farmerA123",
     ),
     // CommunityPage(),
-    // FarmerInventoryView(),
+    FarmerInventoryView(),
     ProfilePage()
   ];
 

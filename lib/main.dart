@@ -3,6 +3,7 @@ import 'package:app/farmer_direc/commodity/view/commodity_view.dart';
 import 'package:app/farmer_direc/community/view/community_page.dart';
 import 'package:app/farmer_direc/community/view/utils_intermediate.dart';
 import 'package:app/farmer_direc/dashboard/view/farmer_dashboard.dart';
+import 'package:app/farmer_direc/inventory/view/farmer_inventory_view.dart';
 import 'package:app/farmer_direc/navbar/navbar.dart';
 import 'package:app/farmer_direc/orders/view/order_view.dart';
 import 'package:app/farmer_direc/orders/viewmodel/orderViewModel.dart';
@@ -99,7 +100,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
 
-      home: CommunityPage(),
+      home: HomePage(),
     );
   }
 }
